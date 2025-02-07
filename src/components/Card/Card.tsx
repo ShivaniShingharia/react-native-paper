@@ -101,6 +101,10 @@ export type Props = $Omit<React.ComponentProps<typeof Surface>, 'mode'> & {
    * Pass down accessible from card props to touchable
    */
   accessible?: boolean;
+  /**
+   * Pass down accessibilityRole from card props to add it's role
+   */
+  accessibilityRole?: string;
 };
 
 /**
@@ -146,6 +150,7 @@ const CardComponent = (
     theme: themeOverrides,
     testID = 'card',
     accessible,
+    accessibilityRole,
     disabled,
     ...rest
   }: (OutlinedCardProps | ElevatedCardProps | ContainedCardProps) & Props,
@@ -313,6 +318,7 @@ const CardComponent = (
       {hasPassedTouchHandler ? (
         <Pressable
           accessible={accessible}
+          accessibilityRole={accessibilityRole}
           unstable_pressDelay={0}
           disabled={disabled}
           delayLongPress={delayLongPress}
